@@ -6398,3 +6398,202 @@ body.is-preload #banner .content.primary {
 	transform: none !important;
 	opacity: 1 !important;
 }
+/* ------------------------------------------------------------
+   REGWYSE — ORGANISATIONS CAROUSEL
+   ------------------------------------------------------------ */
+
+.rw-organisations {
+    background: #F6F6F3;
+    padding: 5rem 0 4rem;
+    overflow: hidden;
+}
+
+.rw-organisations-inner {
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.rw-organisations-header {
+    text-align: center;
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+}
+
+.rw-organisations-header h2 {
+    color: #152738;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.rw-organisations-header p {
+    color: #66737D;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* Carousel container */
+
+.rw-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+}
+
+/* Moving track */
+
+.rw-carousel-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: rw-scroll 85s linear infinite;
+}
+
+/* Each complete set of organisations */
+
+.rw-carousel-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
+}
+
+/* Individual organisation */
+
+.rw-carousel-group a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 0 0 auto;
+
+    color: #425466;
+    text-decoration: none;
+    border-bottom: none;
+
+    opacity: 0.65;
+    filter: grayscale(100%);
+
+    transition:
+        opacity 0.25s ease,
+        filter 0.25s ease;
+}
+
+.rw-carousel-group a:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+/* Organisation icon */
+
+.rw-carousel-group img {
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* Organisation name */
+
+.rw-carousel-group span {
+    display: inline-block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+}
+
+/* Stop scrolling when interacting */
+
+.rw-carousel:hover .rw-carousel-track,
+.rw-carousel:focus-within .rw-carousel-track {
+    animation-play-state: paused;
+}
+
+/* Continuous movement */
+
+@keyframes rw-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Disclaimer */
+
+.rw-organisations-disclaimer {
+    max-width: 50rem;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
+
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #89939A;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 736px) {
+
+    .rw-organisations {
+        padding: 3.5rem 0 3rem;
+    }
+
+    .rw-organisations-header h2 {
+        font-size: 1.45rem;
+    }
+
+    .rw-carousel-group {
+        gap: 2rem;
+        padding-right: 2rem;
+    }
+
+    .rw-carousel-group img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .rw-carousel-group span {
+        font-size: 0.9rem;
+    }
+
+    .rw-carousel-track {
+        animation-duration: 65s;
+    }
+
+}
+
+/* Accessibility: reduce motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rw-carousel {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .rw-carousel-track {
+        animation: none;
+    }
+
+}
