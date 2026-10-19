@@ -6054,21 +6054,347 @@ button:hover,
 	}
 
 }
-#header > .logo {
+/* ------------------------------------------------------------
+   LOGIN MODAL
+   ------------------------------------------------------------ */
+
+.login-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 30000;
+
 	display: flex;
 	align-items: center;
-	height: 100%;
+	justify-content: center;
+
+	padding: 2rem;
+
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+
+	transition:
+		opacity 0.2s ease,
+		visibility 0.2s ease;
 }
 
-#header > .logo a {
-	display: flex;
-	align-items: center;
-	height: 100%;
+.login-modal:target {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
 }
 
-#header > .logo img {
+.login-modal__backdrop {
+	position: absolute;
+	inset: 0;
 	display: block;
-	width: auto;
-	height: 2rem;
-	max-width: 190px;
+	background: rgba(14, 28, 40, 0.76);
+	-webkit-backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
+	border: 0;
+}
+
+.login-modal__dialog {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	max-width: 28rem;
+	padding: 2.75rem;
+	background: #ffffff;
+	box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.25);
+}
+
+.login-modal__dialog h2 {
+	margin: 0 3rem 0.75rem 0;
+	color: var(--rw-navy);
+}
+
+.login-modal__dialog > p,
+#login-panel > p,
+#password-reset-panel > p {
+	margin-bottom: 2rem;
+	color: var(--rw-muted);
+}
+
+.login-modal__close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 0;
+	color: var(--rw-navy) !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.75rem;
+	font-weight: 300;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.login-modal__close:hover {
+	background: var(--rw-paper);
+	color: var(--rw-navy) !important;
+}
+
+.login-modal .field {
+	margin-bottom: 1.5rem;
+}
+
+.login-modal .field label {
+	margin-bottom: 0.5rem;
+	color: var(--rw-navy);
+	font-weight: 700;
+}
+
+.login-modal input[type="email"],
+.login-modal input[type="password"] {
+	border-radius: 0;
+	border: 1px solid var(--rw-border);
+	background: #ffffff;
+}
+
+.login-modal input[type="email"]:focus,
+.login-modal input[type="password"]:focus {
+	border-color: var(--rw-navy);
+	box-shadow: 0 0 0 1px var(--rw-navy);
+}
+
+.login-modal .actions {
+	margin-top: 2rem;
+}
+
+.login-modal button.primary {
+	border-radius: 0;
+	background: var(--rw-navy);
+	color: #ffffff !important;
+}
+
+.login-modal button.primary:hover {
+	background: var(--rw-navy-dark);
+}
+
+.login-modal button:disabled {
+	opacity: 0.65;
+	cursor: wait;
+}
+
+.login-modal__help {
+	margin: 1.5rem 0 0;
+	font-size: 0.85rem;
+	text-align: center;
+}
+
+.login-modal__help a {
+	color: var(--rw-navy);
+	font-weight: 600;
+}
+
+.login-modal__help a:hover {
+	color: var(--rw-accent) !important;
+}
+
+.login-message {
+	margin: 0 0 1.5rem;
+	padding: 0.9rem 1rem;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+.login-message--error {
+	background: #f7eeee;
+	border-left: 3px solid #9f4d4d;
+	color: #713838;
+}
+
+.login-message--success {
+	background: #eef3ef;
+	border-left: 3px solid #57745f;
+	color: #405646;
+}
+
+.login-modal [hidden] {
+	display: none !important;
+}
+
+@media screen and (max-width: 736px) {
+	.login-modal {
+		padding: 1.25rem;
+	}
+
+	.login-modal__dialog {
+		padding: 2.25rem 1.75rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.login-modal {
+		padding: 1rem;
+	}
+
+	.login-modal__dialog {
+		padding: 2rem 1.5rem;
+	}
+}
+
+/* RegWyse logo positioning */
+
+#header > .logo,
+#header.alt > .logo {
+	top: 50%;
+	left: 2.5rem;
+	transform: translateY(-50%);
+	height: auto;
+	line-height: 1;
+}
+
+#header > .logo a,
+#header.alt > .logo a {
+	display: flex;
+	align-items: center;
+	height: auto;
+	line-height: 1;
+}
+
+#header > .logo img,
+#header.alt > .logo img {
+	display: block;
+	width: 180px;
+	height: auto;
+	max-height: 2.4rem;
+	object-fit: contain;
+}
+
+@media screen and (max-width: 980px) {
+	#header > .logo,
+	#header.alt > .logo {
+		left: 1.5rem;
+	}
+
+	#header > .logo img,
+	#header.alt > .logo img {
+		width: 160px;
+		max-height: 2.1rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#header > .logo,
+	#header.alt > .logo {
+		left: 1rem;
+	}
+
+	#header > .logo img,
+	#header.alt > .logo img {
+		width: 145px;
+		max-height: 1.9rem;
+	}
+}
+/* ------------------------------------------------------------
+   REGWYSE HERO VIDEO
+   ------------------------------------------------------------ */
+
+#banner {
+	position: relative;
+	background: var(--rw-navy-dark);
+	overflow: hidden;
+}
+
+/* Video */
+
+#banner video.banner-video {
+	display: block !important;
+	position: absolute;
+	inset: 0;
+
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+	object-position: center;
+
+	/* Unified RegWyse colour treatment */
+	filter:
+		saturate(0.7)
+		contrast(1.08)
+		brightness(0.72);
+
+	z-index: 0;
+}
+
+/* Navy colour wash */
+
+#banner:after {
+	content: "";
+	display: block !important;
+
+	position: absolute;
+	inset: 0;
+
+	width: 100%;
+	height: 100%;
+
+	background: rgba(14, 28, 40, 0.52);
+	opacity: 1;
+
+	z-index: 1;
+	pointer-events: none;
+}
+
+/* Keep all banner text above video + overlay */
+
+#banner .content {
+	position: relative;
+	z-index: 2;
+}
+
+/* Ensure hero text is readable */
+
+#banner .content.primary h1,
+#banner .content.primary h2,
+#banner .content.primary h3,
+#banner .content.primary p {
+	color: #ffffff;
+}
+
+#banner .content.primary header p {
+	color: rgba(255, 255, 255, 0.92) !important;
+}
+
+
+#banner .content.primary .button {
+	color: #ffffff !important;
+	border-color: rgba(255, 255, 255, 0.85) !important;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+#banner .content.primary .button:hover {
+	background: #ffffff;
+	color: var(--rw-navy) !important;
+	border-color: #ffffff !important;
+}
+/* ------------------------------------------------------------
+   REGWYSE — REMOVE HERO LOAD FLICKER
+   ------------------------------------------------------------ */
+
+#banner:after {
+	transition: none !important;
+	transition-delay: 0s !important;
+}
+
+#banner .content.primary {
+	transition: none !important;
+	transform: none !important;
+	opacity: 1 !important;
+}
+
+body.is-preload #banner:after {
+	opacity: 1;
+}
+
+body.is-preload #banner .content.primary {
+	transform: none !important;
+	opacity: 1 !important;
 }
