@@ -6597,3 +6597,37 @@ body.is-preload #banner .content.primary {
     }
 
 }
+/* Image behind UK · Australia · New Zealand */
+#wrapper > #markets.main.accent2 > header {
+    background:
+        linear-gradient(
+            rgba(14, 28, 40, 0.52),
+            rgba(14, 28, 40, 0.52)
+        ),
+        url("../../images/RegWyse_meet.png")
+        center center / cover no-repeat;
+
+    padding: 6rem 3rem;
+    text-align: center;
+}
+
+/* White text over photograph */
+#wrapper > #markets.main.accent2 > header h2,
+#wrapper > #markets.main.accent2 > header p {
+    color: #ffffff !important;
+}
+
+/* Retain original styling below the photograph */
+#wrapper > #markets.main.accent2 > .inner {
+    background: var(--rw-paper);
+}
+
+/* Mobile */
+@media screen and (max-width: 736px) {
+
+    #wrapper > #markets.main.accent2 > header {
+        padding: 4rem 1.5rem;
+        background-position: center;
+    }
+
+}
